@@ -25,8 +25,7 @@ def addTask(task):
 #Remove a task from the list
 def removeTask(task):
     if not task:
-        print("The task list is currently empty!")
-        return
+        return "The task list is currently empty!"
     showTasks(task)
     print("Enter which task you would like to remove: ")
     remove = input()
@@ -43,17 +42,16 @@ def removeTask(task):
 #Mark a task as complete
 def markComplete(task):
     if not task:
-        print("The task list is currently empty!")
-        return
+        return "The task list is currently empty!"
     showTasks(task)
     print("Which task has been completed?")
-    tasknum = input()
-    while int(tasknum) > len(task):
+    taskNum = input()
+    while int(taskNum) > len(task):
         print("Please enter a valid number!")
-        tasknum = input()
+        taskNum = input()
 
-    task[int(tasknum)-1] = task[int(tasknum)-1].replace(BOX, TICK)
-    return f"Congratulations! Task {tasknum} has been completed!"
+    task[int(taskNum)-1] = task[int(taskNum)-1].replace(BOX, TICK)
+    return f"Congratulations! Task {taskNum} has been completed!"
 
 #Mark a task as incomplete
 def markIncomplete(task):
@@ -62,15 +60,15 @@ def markIncomplete(task):
 
     showTasks(task)
     print("Which task do you want to mark incomplete?")
-    tasknum = input()
-    while int(tasknum) > len(task):
+    taskNum = input()
+    while int(taskNum) > len(task):
         print("Please enter a valid number!")
-        tasknum = input()
-    if BOX in task[int(tasknum)-1]:
+        taskNum = input()
+    if BOX in task[int(taskNum)-1]:
         return "That task is already marked incomplete!"
 
-    task[int(tasknum)-1] = task[int(tasknum)-1].replace(TICK, BOX)
-    return f"Task {tasknum} has been marked incomplete!"
+    task[int(taskNum)-1] = task[int(taskNum)-1].replace(TICK, BOX)
+    return f"Task {taskNum} has been marked incomplete!"
 
 
 #Print out all currently logged tasks

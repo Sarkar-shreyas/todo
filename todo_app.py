@@ -1,6 +1,7 @@
 TICK = "✓"
 BOX = "□"
-tasks = []
+TASKS = []
+
 #Simple options menu
 def menu():
     print("1. Add a task")
@@ -39,6 +40,7 @@ def removeTask(task):
     del task[int(remove) - 1]
     return f"Task {remove} has been successfully deleted!"
 
+#Mark a task as complete
 def markComplete(task):
     if not task:
         print("The task list is currently empty!")
@@ -52,6 +54,24 @@ def markComplete(task):
 
     task[int(tasknum)-1] = task[int(tasknum)-1].replace(BOX, TICK)
     return f"Congratulations! Task {tasknum} has been completed!"
+
+#Mark a task as incomplete
+def markIncomplete(task):
+    if not task:
+        return "The task list is currently empty!"
+
+    showTasks(task)
+    print("Which task do you want to mark incomplete?")
+    tasknum = input()
+    while int(tasknum) > len(task):
+        print("Please enter a valid number!")
+        tasknum = input()
+    if BOX in task[int(tasknum)-1]:
+        return "That task is already marked incomplete!"
+
+    task[int(tasknum)-1] = task[int(tasknum)-1].replace(TICK, BOX)
+    return f"Task {tasknum} has been marked incomplete!"
+
 
 #Print out all currently logged tasks
 def showTasks(task, num=0):
@@ -82,21 +102,6 @@ def showTasks(task, num=0):
             if TICK in item:
                 print(f"{task.index(item) + 1}. {item}")
 
-def markIncomplete(task):
-    if not task:
-        return "The task list is currently empty!"
-
-    showTasks(task)
-    print("Which task do you want to mark incomplete?")
-    tasknum = input()
-    while int(tasknum) > len(task):
-        print("Please enter a valid number!")
-        tasknum = input()
-    if BOX in task[int(tasknum)-1]:
-        return "That task is already marked incomplete!"
-
-    task[int(tasknum)-1] = task[int(tasknum)-1].replace(TICK, BOX)
-    return f"Task {tasknum} has been marked incomplete!"
 
 def main():
 
@@ -108,21 +113,22 @@ def main():
         choice = input()
 
         if choice == '8':
-            break
+            print("Thank you for using the todo-list app! :)")
+            return
         elif choice == '1':
-            addTask(tasks)
+            addTask(TASKS)
         elif choice == '2':
-            removeTask(tasks)
+            removeTask(TASKS)
         elif choice == '3':
-            markComplete(tasks)
+            markComplete(TASKS)
         elif choice == '4':
-            markIncomplete(tasks)
+            markIncomplete(TASKS)
         elif choice == '5':
-            showTasks(tasks, int(choice))
+            showTasks(TASKS, int(choice))
         elif choice == '6':
-            showTasks(tasks, int(choice))
+            showTasks(TASKS, int(choice))
         elif choice == '7':
-            showTasks(tasks, int(choice))
+            showTasks(TASKS, int(choice))
         else:
             print("Please enter a valid choice: ")
             choice = input()

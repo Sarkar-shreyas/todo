@@ -8,6 +8,6 @@ V1.01 Added more comments for readability
 
 V1.1 Remade program into a simple CLI app that logs tasks into a .json file. 
 
-V1.01 Added a 'clear all' option
+V1.11 Added a 'clear all' option
 
 
